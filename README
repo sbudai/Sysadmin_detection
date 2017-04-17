@@ -1,3 +1,6 @@
 This task is about analyzing what commands the users of an IT system use during their work. The
 main question to investigate is whether it is possible to distinguish between users based on their
 usage of commands.
+
+  O. Tange (2011): GNU Parallel - The Command-Line Power Tool,
+  ;login: The USENIX Magazine, February 2011:42-47.
