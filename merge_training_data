@@ -1,0 +1,28 @@
+#!/bin/bash
+
+# dropping previous file
+rm -f all_history.csv
+
+# creating new all_history.csv file with appropiate header ("date" column will be added)
+cd ./_ds_task/training_files
+first=$(ls | sort -n | head -1)
+head -n+1 $first > temp.csv
+awk -F"," -v col="date" -v OFS="," '{print col, $0}' temp.csv > all_history.csv
+rm -f temp.csv
+cd .. && cd ..
+mv ./_ds_task/training_files/all_history.csv ./
+
+# appending those daily files into the all_history.csv.
+# plus adding "date" values from filenames into the first column
+for pathfilename in ./_ds_task/training_files/*; do 
+	filename=$(echo $pathfilename | tail -c 11)
+	echo $filename
+	awk -F"," -v col="$filename" -v OFS="," '{print col, $0}' $pathfilename | tail -n+2 >> all_history.csv
+done 
+
+echo "The historical data have merged into all_history.csv."
+ls -al all_history.csv
+
+
+
+
