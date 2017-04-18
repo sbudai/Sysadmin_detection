@@ -2,8 +2,8 @@
 
 ###################################################################################################################
 #                                                                                                                 #
-# Returns the distinct words of a column from a csv file and their number of occurencecached prices resulting     #
-# from their users’ searches.                                                                                     #
+# Returns the distinct words of a column from a csv file and their number of occurence                            #
+#                                                                                                                 #
 # usage:                                                                                                          #
 # 	~$ ./wc_for_col -s=infile.txt -d=, -c=3                                                                       #
 #                                                                                                                 #
