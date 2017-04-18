@@ -1,0 +1,42 @@
+#!/bin/bash
+
+###################################################################################################################
+#                                                                                                                 #
+# Returns the distinct words of a column from a csv file and their number of occurencecached prices resulting     #
+# from their users’ searches.                                                                                     #
+# usage:                                                                                                          #
+# 	~$ ./wc_for_col -s=infile.txt -d=, -c=3                                                                       #
+#                                                                                                                 #
+# s={source file}                                                                                                 #
+# d={delimiter}                                                                                                   #
+# c={column}                                                                                                      #
+#                                                                                                                 #
+###################################################################################################################
+
+
+# the following arguments should be provided by the user of this bash script
+for i in "$@"
+do
+case $i in
+    -s=*|--source=*)
+		Source="${i#*=}"
+		shift # past argument=value
+    ;;
+    -d=*|--delimiter=*)
+		Delimiter="${i#*=}"
+		shift # past argument=value
+    ;;
+    -c=*|--column=*)
+		Column="${i#*=}"
+		shift # past argument=value
+    ;;
+    *)
+        # unknown option
+    ;;
+esac
+done
+
+# computation
+LC_ALL=C
+cut -d $Delimiter -f $Column $Source | tr -d '[](),;.?!:"\/<>#=' | sed 's/[^a-zA-Z ]//g' | tr ' ' '\n' | sort | uniq -c | sed -e 's/^[ \t]*//' | awk -F" " -v OFS="," '{print $2, $1}' | sort --field-separator=, --key=2 --numeric-sort --reverse
+
