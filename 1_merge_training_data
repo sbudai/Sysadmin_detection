@@ -21,7 +21,7 @@ for pathfilename in ./_ds_task/training_files/*; do
 done 
 
 echo "The historical data have merged into all_history.csv."
-ls -al all_history.csv
+ls -al all_history.csv          
 
 
 
