@@ -1,0 +1,85 @@
+#!/bin/bash
+
+# the following arguments should be provided by the user of this bash script
+for i in "$@"
+do
+case $i in
+    -td=*|--trainingdirectory=*)
+		TrainingDirectory="${i#*=}"
+		shift # past argument=value
+    ;;
+    -tsd=*|--testdirectory=*)
+		TestDirectory="${i#*=}"
+		shift # past argument=value
+	;;
+    -wd=*|--workingdirectory=*)
+		WorkingDirectory="${i#*=}"
+		shift # past argument=value
+    ;;
+    *)
+        # unknown option
+    ;;
+esac
+done
+
+# detecting the current directory
+baseline=$PWD
+
+# dropping previous equivalent files
+rm -f ${WorkingDirectory/[.]/$baseline}"all_history.csv"
+rm -f ${WorkingDirectory/[.]/$baseline}"public_test.csv"
+rm -f ${WorkingDirectory/[.]/$baseline}"public_test_scored.csv"
+
+# creating new merged file with appropiate header ("date" column will be added)
+cd "${TrainingDirectory/[.]/$baseline}"
+first=$(ls | sort -n | head -1)
+head -n+1 $first > tmp.csv
+awk -F"," -v col="date" -v OFS="," '{print col, $0}' tmp.csv > ${WorkingDirectory/[.]/$baseline}"all_history.csv"
+rm -f tmp.csv
+
+# appending those daily training files into a merged one (all_history.csv)
+# plus adding "date" values from filenames into the first column
+cd ${TrainingDirectory/[.]/$baseline}
+for pathfilename in ${TrainingDirectory/[.]/$baseline}*
+do 
+	filename=$(echo $pathfilename | tail -c 11)
+	echo $filename
+	awk -F"," -v col="$filename" -v OFS="," '{print col, $0}' $pathfilename | tail -n+2 >> ${WorkingDirectory/[.]/$baseline}"all_history.csv"
+done 
+/bin/sleep 1
+
+# renaming 2 column of all_history.csv
+sed -i '1s/date/date_of_session/' ${WorkingDirectory/[.]/$baseline}"all_history.csv"
+sed -i '1s/commands/commands_in_session/' ${WorkingDirectory/[.]/$baseline}"all_history.csv"
+/bin/sleep 0.2
+
+# replacing "[" command with "opening_square_bracket" in all_history.csv
+sed -i 's/\[/opening_square_bracket/g' ${WorkingDirectory/[.]/$baseline}"all_history.csv"
+/bin/sleep 0.2
+
+# copying public_test.csv into working directory
+cp ${TestDirectory/[.]/$baseline}"public_test.csv" ${WorkingDirectory/[.]/$baseline}"public_test.csv"
+/bin/sleep 0.2
+
+# renaming 1 column of public_test.csv
+sed -i '1s/commands/commands_in_session/' ${WorkingDirectory/[.]/$baseline}"public_test.csv"
+/bin/sleep 0.2
+
+# replacing "[" command with "opening_square_bracket" in public_test.csv
+sed -i 's/\[/opening_square_bracket/g' ${WorkingDirectory/[.]/$baseline}"public_test.csv"
+/bin/sleep 0.2
+
+# celebrate
+echo "The all_history.csv merged training data has been prepared in working directory."
+echo "The public_test.csv test data has been prepared in working directory."
+/bin/sleep 1
+
+# step back to original directory
+cd $baseline
+/bin/sleep 0.2
+
+# switching to R
+Rscript engine_script.R ${WorkingDirectory/[.]/$baseline}
+
+
+
