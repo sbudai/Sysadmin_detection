@@ -18,7 +18,7 @@
 # -tsd={path/to/public_test.csv}                                                              #
 # -wd={path/to/intermediary/and/result/files}                                                 #
 #                                                                                             #
-# 	~$ ./Sysadmin_detection_script -td=./_ds_task/training_files/ -tsd=./_ds_task/ -wd=./     #
+#   ~$ ./Sysadmin_detection_script -td=./_ds_task/training_files/ -tsd=./_ds_task/ -wd=./     #
 #                                                                                             #
 ###############################################################################################
 
