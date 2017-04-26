@@ -1,16 +1,24 @@
-This is a github repo of my Sysadmin detection scripts.
+###################################################################################################################
+#                                                                                                                 #
+# This is a github repo of my Sysadmin detection scripts.                                                         #
+#                                                                                                                 #
+# This task is about analyzing what commands the users of an IT system use during their work. The main question   #
+# to investigate is whether it is possible to distinguish between users based on their usage of commands.         #
+#                                                                                                                 #
+# These were written on Ubuntu 16.04 64bit OS using R v3.4 with h2o v3.10.4.5, JavaRE (build 1.8.0_131-b11)       #
+# and BASH scripts.                                                                                               #
+# Dependent tools should be installed prior to usage:                                                             #
+#    ~$ sudo apt-get update                                                                                       #
+#    ~$ sudo apt-get install mawk sed coreutils python-pip r-base                                                 #
+#    ~$ sudo pip install csvkit                                                                                   #
+#                                                                                                                 #
+#                                                                                                                 #
+# usage:                                                                                                          #
+# -td={path/to/training_files}                                                                                    #
+# -tsd={path/to/public_test.csv}                                                                                  #
+# -wd={path/to/intermediary/and/result/files}                                                                     #
+#                                                                                                                 #
+# 	~$ ./Sysadmin_detection_script -td=./_ds_task/training_files/ -tsd=./_ds_task/ -wd=./                         #
+#                                                                                                                 #
+###################################################################################################################
 
-This task is about analyzing what commands the users of an IT system use during their work. The
-main question to investigate is whether it is possible to distinguish between users based on their
-usage of commands.
-
-These were written on Ubuntu 16.04 64bit OS using R and BASH scripts
-
-Dependent tools should be installed prior to usage:
-  ~$ sudo add-apt-repository 'deb [arch=amd64,i386] https://cran.rstudio.com/bin/linux/ubuntu xenial/'
-  ~$ sudo apt-get update
-  ~$ sudo apt-get install parallel jq mawk sed coreutils python-pip r-base
-  ~$ sudo pip install csvkit
-
-  O. Tange (2011): GNU Parallel - The Command-Line Power Tool,
-  ;login: The USENIX Magazine, February 2011:42-47.
