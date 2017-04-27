@@ -48,7 +48,6 @@ if (length(args) == 0) {
 } else if (length(args) == 1 ) {
   wd = args[1]
 }
-### wd <- '/home/sbudai/Documents/projects/GitHub/Sysadmin_detection/'  ### törlendő!!
 
 ######################################## SCRIPT ##########################################################
 ######################################## data munging ####################################################
