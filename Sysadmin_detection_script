@@ -75,7 +75,7 @@ echo "The public_test.csv test data has been prepared in working directory."
 /bin/sleep 1
 
 # step back to original directory
-cd $baseline
+cd "${WorkingDirectory/[.]/$baseline}"
 /bin/sleep 0.2
 
 # switching to R
