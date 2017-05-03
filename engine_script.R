@@ -24,7 +24,8 @@ install_load('data.table',
              'htmlwidgets',
              'Rmisc',
              'plyr',
-             'dplyr')
+             'dplyr',
+             'rmarkdown')
 
 ######################################## FUNCTIONS ##########################################################
 
