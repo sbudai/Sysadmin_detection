@@ -280,7 +280,7 @@ Sys.sleep(1.5)
 
 # saving p1_p2 chart
 file_out = paste(getwd(), '/histogram-nr_of_commands.html', sep = '')
-tryCatch(htmlwidgets::saveWidget(as.widget(p1_p2), file_out), warning = function(e) e)
+tryCatch(htmlwidgets::saveWidget(as_widget(p1_p2), file_out), warning = function(e) e)
 
 # removing unnecessary objects
 rm(list = c('training',
@@ -381,7 +381,7 @@ Sys.sleep(1.5)
 
 # saving p1_p2_p3 chart
 file_out = paste(getwd(), '/user_statistics.html', sep = '')
-tryCatch(htmlwidgets::saveWidget(as.widget(p1_p2_p3), file_out), warning = function(e) e)
+tryCatch(htmlwidgets::saveWidget(as_widget(p1_p2_p3), file_out), warning = function(e) e)
 
 # removing unnecessary objects
 rm(list = c('p1',
@@ -435,7 +435,7 @@ Sys.sleep(1.5)
 
 # saving p1 chart
 file_out = paste(getwd(), '/all_commands_ratio.html', sep = '')
-tryCatch(htmlwidgets::saveWidget(as.widget(p1), file_out), warning = function(e) e)
+tryCatch(htmlwidgets::saveWidget(as_widget(p1), file_out), warning = function(e) e)
 
 # a brief summary
 cat(sprintf("There some commands which were mainly used by Austin White; and there were many which where mainly used by others.\nThese kind of variables can be used as predictors but there are so many of them.\nSo I have to sort further out.\n"))
@@ -496,7 +496,7 @@ Sys.sleep(1.5)
 
 # saving p1 chart
 file_out = paste(getwd(), '/predictor_commands_ratio.html', sep = '')
-tryCatch(htmlwidgets::saveWidget(as.widget(p1), file_out), warning = function(e) e)
+tryCatch(htmlwidgets::saveWidget(as_widget(p1), file_out), warning = function(e) e)
 
 # removing unnecessary objects
 rm(list = c('p1',
@@ -525,7 +525,7 @@ Sys.sleep(1.5)
 
 # saving p1 chart
 file_out = paste(getwd(), '/predictor_commands_histogram.html', sep = '')
-tryCatch(htmlwidgets::saveWidget(as.widget(p1), file_out), warning = function(e) e)
+tryCatch(htmlwidgets::saveWidget(as_widget(p1), file_out), warning = function(e) e)
 
 # removing unnecessary objects
 rm(list = c('p1',
