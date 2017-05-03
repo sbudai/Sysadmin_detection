@@ -11,7 +11,10 @@
 #    ~$ sudo apt-get update                                                                   #
 #    ~$ sudo apt-get install mawk sed coreutils python-pip r-base                             #
 #    ~$ sudo pip install csvkit                                                               #
-#                                                                                             #
+# The version of pandoc included in the standard repositories is not recent enough for        #
+# use with the rmarkdown package, so it is necessary to link them from rstudio folders:       #
+#    ~$ sudo ln -s /usr/lib/rstudio/bin/pandoc/pandoc /usr/local/bin                          #
+#    ~$ sudo ln -s /usr/lib/rstudio/bin/pandoc/pandoc-citeproc /usr/local/bin                 #
 #                                                                                             #
 # usage:                                                                                      #
 # -td={path/to/training_files}                                                                #
